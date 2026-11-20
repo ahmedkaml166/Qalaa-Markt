@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة قلعة سكر الشاملة</title>
+<meta name="theme-color" content="#1d4ed8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="قلعة سكر">
+<link id="app-icon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%231d4ed8'/%3E%3Ctext x='50%25' y='46%25' font-family='Tahoma, Arial' font-size='115' font-weight='bold' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3Eقلعة%3C/text%3E%3Ctext x='50%25' y='68%25' font-family='Tahoma, Arial' font-size='115' font-weight='bold' fill='%23fef3c7' text-anchor='middle' dominant-baseline='middle'%3Eسكر%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%231d4ed8'/%3E%3Ctext x='50%25' y='46%25' font-family='Tahoma, Arial' font-size='115' font-weight='bold' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3Eقلعة%3C/text%3E%3Ctext x='50%25' y='68%25' font-family='Tahoma, Arial' font-size='115' font-weight='bold' fill='%23fef3c7' text-anchor='middle' dominant-baseline='middle'%3Eسكر%3C/text%3E%3C/svg%3E">
+<style>
+body{font-family:Tahoma,sans-serif;background:#f1f5f9;margin:0;padding:0 0 70px;direction:rtl}
+header{background:#1d4ed8;color:#fff;text-align:center;padding:16px 10px}
+header h1{margin:0;font-size:21px}
+.points-bar{background:#fef3c7;color:#92400e;text-align:center;padding:8px;font-weight:bold;font-size:13px}
+.cats-bar{display:flex;flex-wrap:wrap;gap:6px;max-width:1300px;margin:12px auto 8px;padding:0 15px;justify-content:center}
+.cat-btn{padding:6px 12px;border:1px solid #cbd5e1;background:#fff;color:#0f172a;border-radius:20px;font-size:11px;font-weight:bold;cursor:pointer}
+.cat-btn.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.search-container{text-align:center;margin:8px 12px 12px}
+#searchBox{width:100%;max-width:450px;padding:9px 14px;border:1px solid #cbd5e1;border-radius:20px;font-size:13px;box-sizing:border-box}
+.section-title{max-width:1300px;margin:14px auto 8px;padding:0 15px;font-size:15px;font-weight:bold;color:#0f172a}
+.top-products-scroll{display:flex;overflow-x:auto;gap:10px;max-width:1300px;margin:0 auto 16px;padding:8px 15px}
+.mini-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:6px;min-width:120px;text-align:center;flex-shrink:0}
+.media-box{background:#e2e8f0;height:78px;border-radius:5px;overflow:hidden;margin-bottom:5px;position:relative}
+.media-box img,.media-box video,.media-box iframe{width:100%;height:100%;object-fit:cover;border:none;display:block}
+.media-box img{cursor:zoom-in}
+.tt-box{width:100%;height:100%;background:#0f172a;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:9px;text-align:center;padding:4px;box-sizing:border-box}
+.tt-link{background:#e11d48;color:#fff;text-decoration:none;padding:3px 7px;border-radius:4px;font-weight:bold;font-size:9px}
+.badge{position:absolute;top:4px;right:4px;background:#10b981;color:#fff;font-size:10px;padding:1px 5px;border-radius:6px;z-index:2}
+.del-x{position:absolute;top:4px;left:4px;background:#dc2626;color:#fff;border:none;width:18px;height:18px;border-radius:50%;font-size:10px;padding:0;cursor:pointer;font-weight:bold;z-index:5}
+.grid-container{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:1300px;margin:0 auto 14px;padding:0 15px}
+@media(min-width:600px){.grid-container{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:900px){.grid-container{grid-template-columns:repeat(6,1fr)}}
+@media(min-width:1200px){.grid-container{grid-template-columns:repeat(8,1fr)}}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.card-body{padding:6px;text-align:center}
+.card-title{font-size:11px;font-weight:bold;margin:0 0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-browse{width:100%;background:#1d4ed8;color:#fff;border:none;padding:5px;border-radius:5px;font-size:10px;font-weight:bold;cursor:pointer}
+.actions{display:flex;gap:3px;padding:0 5px 5px}
+.btn-wa{flex:1.2;background:#22c55e;color:#fff;text-decoration:none;font-size:9px;font-weight:bold;text-align:center;padding:4px 2px;border-radius:4px}
+.btn-sh{flex:1;background:#f97316;color:#fff;border:none;font-size:9px;font-weight:bold;padding:4px 2px;border-radius:4px;cursor:pointer}
+.back-btn{margin:12px 15px 0;padding:7px 14px;background:#475569;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold}
+.admin-panel{display:none;max-width:1300px;margin:10px auto;padding:0 15px;box-sizing:border-box}
+.adm-card{background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:9px;margin-bottom:8px}
+.adm-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
+.adm-in{flex:1;min-width:130px;padding:6px 8px;border:1px solid #94a3b8;border-radius:5px;font-size:12px}
+.adm-btn{padding:6px 11px;border:none;border-radius:5px;color:#fff;font-size:12px;font-weight:bold;cursor:pointer}
+#shareModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;z-index:9999}
+.modal-card{background:#fff;padding:16px;border-radius:10px;width:90%;max-width:310px;text-align:center}
+.modal-btn{display:block;width:100%;padding:8px;margin-top:7px;border:none;border-radius:6px;color:#fff;font-weight:bold;text-decoration:none;cursor:pointer;box-sizing:border-box}
+#zoomModal{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.88);justify-content:center;align-items:center;z-index:10000;padding:15px;box-sizing:border-box}
+.zoom-wrap{position:relative;max-width:92vw;max-height:88vh;background:#fff;border-radius:10px;padding:10px;text-align:center}
+.zoom-wrap img{max-width:100%;max-height:75vh;display:block;margin:0 auto;border-radius:6px;object-fit:contain}
+.zoom-cap{margin-top:8px;font-size:13px;font-weight:bold;color:#0f172a}
+.zoom-close{position:absolute;top:-10px;left:-10px;width:28px;height:28px;border-radius:50%;border:none;background:#dc2626;color:#fff;font-size:13px;font-weight:bold;cursor:pointer}
+#installBar{display:none;position:fixed;bottom:10px;left:10px;right:10px;max-width:460px;margin:0 auto;background:#0f172a;color:#fff;padding:10px 12px;border-radius:10px;z-index:9998;align-items:center;justify-content:space-between;gap:8px;box-shadow:0 4px 15px rgba(0,0,0,0.3);font-size:12px}
+#installBtn{background:#f59e0b;color:#0f172a;border:none;padding:6px 12px;border-radius:6px;font-weight:bold;cursor:pointer;white-space:nowrap}
+</style>
+</head>
+<body>
+<header><h1>منصة قلعة سكر الشاملة</h1><div style="font-size:12px;margin-top:4px">دليل المحلات والمنتجات</div></header>
+<div class="points-bar">نقاطك الحالية: <span id="pts">0</span> نقطة</div>
+<div id="homeSec">
+<div class="cats-bar" id="catsBar">
+<button type="button" class="cat-btn active" onclick="pickCat('الكل',this)">الكل</button>
+<button type="button" class="cat-btn" onclick="pickCat('السيارات والمعارض',this)">السيارات والمعارض</button>
+<button type="button" class="cat-btn" onclick="pickCat('مطاعم وأكلات',this)">مطاعم وأكلات</button>
+<button type="button" class="cat-btn" onclick="pickCat('أزياء وملابس',this)">أزياء وملابس</button>
+<button type="button" class="cat-btn" onclick="pickCat('عطور وعناية',this)">عطور وعناية</button>
+<button type="button" class="cat-btn" onclick="pickCat('منزل ومكتبات',this)">منزل ومكتبات</button>
+<button type="button" class="cat-btn" onclick="pickCat('خدمات وأخرى',this)">خدمات وأخرى</button>
+</div>
+<div class="search-container"><input type="text" id="searchBox" onkeyup="resetScrollAndFilter()" placeholder="ابحث باسم المحل أو رقمه..."></div>
+<div id="topAdminBox" class="admin-panel">
+<div class="adm-card"><div style="font-size:12px;font-weight:bold">إدارة الشريط العلوي (رقم 1-30 + اسم + سعر + صورة أو فيديو yt:معرف / رابط تيك توك / ملف)</div>
+<div class="adm-row">
+<input type="number" id="tNumIn" class="adm-in" style="max-width:75px" min="1" max="30" value="1">
+<input type="text" id="tNameIn" class="adm-in" placeholder="اسم المنتج">
+<input type="text" id="tPriceIn" class="adm-in" placeholder="السعر (مثال: 15,000 د.ع)">
+<input type="text" id="tImgIn" class="adm-in" placeholder="مسار أو رابط الصورة">
+<input type="file" id="tFileIn" accept="image/*" style="font-size:11px" onchange="pickImg(this,'tImgIn')">
+<input type="text" id="tVidIn" class="adm-in" placeholder="فيديو: yt:معرف أو رابط تيك توك أو videos/t1.mp4">
+<button type="button" class="adm-btn" style="background:#0f766e" onclick="saveTopItem()">حفظ الشريط</button>
+</div></div>
+</div>
+<div class="section-title">أبرز المنتجات المميزة (30 منتج)</div>
+<div class="top-products-scroll" id="topList"></div>
+<div class="section-title" id="shopsTitle">دليل المحلات (1 إلى 100)</div>
+<div class="grid-container" id="shopsList"></div>
+<div id="moreShopsNote" style="text-align:center;font-size:12px;color:#475569;margin-bottom:20px;font-weight:bold"></div>
+</div>
+<div id="shopSec" style="display:none">
+<div style="max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-left:15px">
+<button type="button" class="back-btn" onclick="backHome()">العودة للرئيسية</button>
+<button type="button" class="back-btn" style="background:#f97316" onclick="shareCurrentShop()">مشاركة المحل بالكامل</button>
+</div>
+<div id="adminBox" class="admin-panel">
+<div class="adm-card"><div style="font-size:12px;font-weight:bold">بيانات المحل (الاسم + الواتساب + القسم + صورة الواجهة)</div>
+<div class="adm-row">
+<input type="text" id="sNameIn" class="adm-in" placeholder="اسم المحل">
+<input type="text" id="sPhoneIn" class="adm-in" placeholder="رقم الواتساب">
+<select id="sCatIn" class="adm-in">
+<option value="خدمات وأخرى">خدمات وأخرى</option>
+<option value="السيارات والمعارض">السيارات والمعارض</option>
+<option value="مطاعم وأكلات">مطاعم وأكلات</option>
+<option value="أزياء وملابس">أزياء وملابس</option>
+<option value="عطور وعناية">عطور وعناية</option>
+<option value="منزل ومكتبات">منزل ومكتبات</option>
+</select>
+<input type="text" id="sImgIn" class="adm-in" placeholder="رابط أو مسار صورة الواجهة">
+<input type="file" id="sFileIn" accept="image/*" style="font-size:11px" onchange="pickImg(this,'sImgIn')">
+<button type="button" class="adm-btn" style="background:#1d4ed8" onclick="saveShopInfo()">حفظ المحل</button>
+</div></div>
+<div class="adm-card"><div style="font-size:12px;font-weight:bold">فيديو داخل قطعة محددة (1-50 + yt:معرف أو رابط تيك توك أو رابط/مسار)</div>
+<div class="adm-row">
+<input type="number" id="vSlotIn" class="adm-in" style="max-width:75px" min="1" max="50" value="1">
+<input type="text" id="vidIn" class="adm-in" placeholder="مثال: yt:jNQXAC9IVRw أو رابط تيك توك أو videos/1.mp4">
+<button type="button" class="adm-btn" style="background:#0f766e" onclick="saveVid()">حفظ الفيديو</button>
+<button type="button" class="adm-btn" style="background:#dc2626" onclick="delVid()">حذف الفيديو</button>
+</div></div>
+<div class="adm-card"><div style="font-size:12px;font-weight:bold">إضافة / تعديل قطعة (1-50 + اسم + سعر + صورة)</div>
+<div class="adm-row">
+<input type="number" id="pNumIn" class="adm-in" style="max-width:75px" min="1" max="50" value="1">
+<input type="text" id="pNameIn" class="adm-in" placeholder="اسم القطعة">
+<input type="text" id="pPriceIn" class="adm-in" placeholder="السعر">
+<input type="text" id="pImgIn" class="adm-in" placeholder="مسار أو رابط الصورة">
+<input type="file" id="pFileIn" accept="image/*" style="font-size:11px" onchange="pickImg(this,'pImgIn')">
+<button type="button" class="adm-btn" style="background:#0f766e" onclick="saveProd()">حفظ القطعة</button>
+</div></div>
+<div class="adm-card"><div style="font-size:12px;font-weight:bold">النسخة الاحتياطية للبيانات (حفظ واسترجاع)</div>
+<div class="adm-row">
+<button type="button" class="adm-btn" style="background:#1d4ed8" onclick="exportBackup()">تصدير نسخة احتياطية</button>
+<input type="file" id="impFileIn" accept=".json,application/json" style="font-size:11px" onchange="importBackup(this)">
+</div></div>
+</div>
+<div class="section-title" id="shopHeading">منتجات المحل</div>
+<div class="grid-container" id="itemsList"></div>
+</div>
+<div id="zoomModal" onclick="closeZoom()"><div class="zoom-wrap" onclick="event.stopPropagation()"><button type="button" class="zoom-close" onclick="closeZoom()">X</button><img id="zoomImg" src="" alt=""><div class="zoom-cap" id="zoomCap"></div></div></div>
+<div id="shareModal"><div class="modal-card"><h3 style="margin:0 0 6px">مشاركة</h3><div id="sharePtsMsg" style="margin-bottom:8px;color:#059669;font-weight:bold">اختر وسيلة المشاركة للحصول على +10 نقاط</div><a id="fbBtn" href="#" target="_blank" onclick="claimSharePts()" class="modal-btn" style="background:#1877f2">فيسبوك</a><a id="waBtn" href="#" target="_blank" onclick="claimSharePts()" class="modal-btn" style="background:#22c55e">واتساب</a><button type="button" onclick="copyLink()" class="modal-btn" style="background:#f97316">نسخ النص والرابط</button><button type="button" onclick="closeModal()" class="modal-btn" style="background:#64748b">إغلاق</button></div></div>
+<div id="installBar"><div><strong>ثبّت منصة قلعة سكر على شاشتك 📲</strong><div id="instHint" style="font-size:11px;color:#cbd5e1">افتح الموقع كتطبيق بضغطة واحدة</div></div><div style="display:flex;gap:6px;align-items:center"><button type="button" id="installBtn">تثبيت</button><button type="button" onclick="hideInstallBar()" style="background:none;border:none;color:#94a3b8;font-size:15px;cursor:pointer">X</button></div></div>
+<script>
+var defaultPhone="9647801787360",adminPass="1234",shopNames={1:"مكتبة الفرات",2:"متجر الأزياء",3:"عطارة الشفاء",4:"مجوهرات القلعة",5:"سوبرماركت البركة"},shopPhones={1:"9647800000001",2:"9647800000002",3:"9647800000003",4:"9647800000004",5:"9647800000005"},shopCats={};
+for(var n=6;n<=100;n++){shopNames[n]="محل "+n;shopPhones[n]="96478000000"+(n<10?"0"+n:n)}
+for(var c=1;c<=100;c++){shopCats[c]="خدمات وأخرى"}
+shopCats[1]="منزل ومكتبات";shopCats[2]="أزياء وملابس";shopCats[3]="عطور وعناية";shopCats[5]="منزل ومكتبات";
+var shopCovers={},itemVideos={},customProds={},topCustom={},curShop=1,curCat="الكل",isAdmin=false,points=0,lastShareText="",shareRewarded=false,visibleShops=100,idb=null;
+if(window.location.search.indexOf("admin=1")!==-1&&prompt("أدخل رمز الإدارة:")===adminPass)isAdmin=true;
+document.getElementById("topAdminBox").style.display=isAdmin?"block":"none";
+function applyLoadedData(d){
+  if(!d)return;
+  if(typeof d.q_pts!=="undefined"){points=parseInt(d.q_pts||"0",10)||0;document.getElementById("pts").textContent=points}
+  if(d.q_shop_names)for(var k in d.q_shop_names)shopNames[k]=d.q_shop_names[k];
+  if(d.q_shop_phones)for(var pk in d.q_shop_phones)shopPhones[pk]=d.q_shop_phones[pk];
+  if(d.q_shop_cats)for(var ck in d.q_shop_cats)shopCats[ck]=d.q_shop_cats[ck];
+  if(d.q_shop_covers)shopCovers=d.q_shop_covers||{};
+  if(d.q_item_vids)itemVideos=d.q_item_vids||{};
+  if(d.q_prods)customProds=d.q_prods||{};
+  if(d.q_top_prods)topCustom=d.q_top_prods||{};
+}
+var lsSnap={};
+try{
+  points=parseInt(localStorage.getItem("q_pts")||"0",10)||0;
+  document.getElementById("pts").textContent=points;
+  lsSnap={
+    q_pts:points,
+    q_shop_names:JSON.parse(localStorage.getItem("q_shop_names")||"{}"),
+    q_shop_phones:JSON.parse(localStorage.getItem("q_shop_phones")||"{}"),
+    q_shop_cats:JSON.parse(localStorage.getItem("q_shop_cats")||"{}"),
+    q_shop_covers:JSON.parse(localStorage.getItem("q_shop_covers")||"{}")||{},
+    q_item_vids:JSON.parse(localStorage.getItem("q_item_vids")||"{}")||{},
+    q_prods:JSON.parse(localStorage.getItem("q_prods")||"{}")||{},
+    q_top_prods:JSON.parse(localStorage.getItem("q_top_prods")||"{}")||{}
+  };
+  applyLoadedData(lsSnap);
+}catch(e){}
+function initBigStorage(){
+  if(!window.indexedDB)return;
+  var req=indexedDB.open("QalaaSukkarDB",1);
+  req.onupgradeneeded=function(ev){
+    var db=ev.target.result;
+    if(!db.objectStoreNames.contains("store"))db.createObjectStore("store");
+  };
+  req.onsuccess=function(ev){
+    idb=ev.target.result;
+    try{
+      var tx=idb.transaction("store","readonly"),st=tx.objectStore("store"),keys=["q_pts","q_shop_names","q_shop_phones","q_shop_cats","q_shop_covers","q_item_vids","q_prods","q_top_prods"],loaded={},done=0;
+      keys.forEach(function(k){
+        var g=st.get(k);
+        g.onsuccess=function(){
+          if(typeof g.result!=="undefined")loaded[k]=g.result;
+          done++;
+          if(done===keys.length&&Object.keys(loaded).length>0){
+            applyLoadedData(loaded);
+            drawHome();
+            if(document.getElementById("shopSec").style.display==="block")drawItems(curShop);
+          }
+        };
+      });
+    }catch(err){}
+  };
+}
+function openZoom(src,cap){if(!src)return;document.getElementById("zoomImg").src=src;document.getElementById("zoomCap").textContent=cap||"";document.getElementById("zoomModal").style.display="flex"}
+function closeZoom(){document.getElementById("zoomModal").style.display="none";document.getElementById("zoomImg").src=""}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeZoom();closeModal()}});
+function getTikTokId(val){if(!val)return"";var s=val.trim();if(s.indexOf("tt:")===0)return s.slice(3).trim();var m=s.match(/tiktok\.com\/(?:@[^/?#]+\/video\/|v\/|embed\/v2\/|embed\/)(\d+)/i);return m?m[1]:""}
+function isTikTokUrl(val){if(!val)return false;var s=val.trim().toLowerCase();return s.indexOf("tt:")===0||s.indexOf("tiktok.com")!==-1||s.indexOf("vm.tiktok.com")!==-1||s.indexOf("vt.tiktok.com")!==-1}
+function makeMedia(imgSrc,vidSrc,cap){
+if(vidSrc&&vidSrc.indexOf("yt:")===0){var ifr=document.createElement("iframe");ifr.src="https://www.youtube.com/embed/"+vidSrc.slice(3);ifr.allowFullscreen=true;return ifr}
+if(vidSrc&&isTikTokUrl(vidSrc)){var ttId=getTikTokId(vidSrc);if(ttId){var tifr=document.createElement("iframe");tifr.src="https://www.tiktok.com/embed/v2/"+ttId;tifr.allow="encrypted-media; fullscreen";tifr.allowFullscreen=true;return tifr}var box=document.createElement("div");box.className="tt-box";var lbl=document.createElement("div");lbl.textContent="فيديو تيك توك";var a=document.createElement("a");a.className="tt-link";a.target="_blank";a.rel="noopener";a.href=vidSrc.trim().indexOf("tt:")===0?("https://www.tiktok.com/video/"+vidSrc.slice(3)):vidSrc.trim();a.textContent="مشاهدة على تيك توك";box.appendChild(lbl);box.appendChild(a);return box}
+if(vidSrc){var vid=document.createElement("video");vid.src=vidSrc;vid.controls=true;vid.muted=true;vid.playsInline=true;return vid}
+var img=document.createElement("img");img.src=imgSrc;img.alt=cap;img.onerror=function(){img.style.display="none"};img.onclick=function(){if(img.src&&img.style.display!=="none")openZoom(img.src,cap)};return img}
+function drawHome(){
+var topList=document.getElementById("topList");topList.innerHTML="";
+for(var i=1;i<=30;i++)(function(idx){var tc=topCustom[idx]||{},tName=tc.name||("قطعة "+idx),tPrice=tc.price||"15,000 د.ع",tImg=tc.img||("images/top/"+idx+".jpg"),tVid=tc.vid||"";var box=document.createElement("div");box.className="mini-card";var mb=document.createElement("div");mb.className="media-box";mb.appendChild(makeMedia(tImg,tVid,tName+" - "+tPrice));if(isAdmin){var delT=document.createElement("button");delT.type="button";delT.className="del-x";delT.textContent="X";delT.onclick=function(){removeTopSlot(idx)};mb.appendChild(delT)}box.appendChild(mb);var d1=document.createElement("div");d1.style.cssText="font-size:11px;font-weight:bold";d1.textContent=tName;box.appendChild(d1);var d2=document.createElement("div");d2.style.cssText="font-size:10px;color:#2563eb;margin-bottom:5px";d2.textContent=tPrice;box.appendChild(d2);var act=document.createElement("div");act.className="actions";act.style.padding="0";var wa=document.createElement("a");wa.className="btn-wa";wa.target="_blank";wa.href="https://wa.me/"+defaultPhone+"?text="+encodeURIComponent("طلب "+tName+" ("+tPrice+")");wa.textContent="طلب";var sh=document.createElement("button");sh.type="button";sh.className="btn-sh";sh.textContent="مشاركة";sh.onclick=function(){doShare(tName)};act.appendChild(wa);act.appendChild(sh);box.appendChild(act);topList.appendChild(box)})(i);
+var shopsList=document.getElementById("shopsList");shopsList.innerHTML="";
+for(var s=1;s<=100;s++)(function(sNum){var sName=shopNames[sNum]||("محل رقم "+sNum),sCat=shopCats[sNum]||"خدمات وأخرى",sImg=shopCovers[sNum]||("images/shop"+sNum+"/main.jpg");var card=document.createElement("div");card.className="card shop-item";card.setAttribute("data-search",sName+" "+sNum);card.setAttribute("data-cat",sCat);var mb=document.createElement("div");mb.className="media-box";mb.appendChild(makeMedia(sImg,"",sName));var bdg=document.createElement("span");bdg.className="badge";bdg.textContent=sNum;mb.appendChild(bdg);card.appendChild(mb);var body=document.createElement("div");body.className="card-body";var t=document.createElement("div");t.className="card-title";t.textContent=sName;body.appendChild(t);var sub=document.createElement("div");sub.style.cssText="font-size:9px;color:#64748b;margin-bottom:5px";sub.textContent=sCat+" • 50 قطعة";body.appendChild(sub);var btn=document.createElement("button");btn.type="button";btn.className="btn-browse";btn.textContent="دخول وتصفح المنتجات";btn.onclick=function(){openShopPage(sNum)};body.appendChild(btn);card.appendChild(body);shopsList.appendChild(card)})(s);
+filterShops()}
+function pickCat(cat,btn){curCat=cat;visibleShops=100;var btns=document.getElementsByClassName("cat-btn");for(var i=0;i<btns.length;i++)btns[i].classList.remove("active");if(btn)btn.classList.add("active");filterShops()}
+function resetScrollAndFilter(){visibleShops=100;filterShops()}
+function filterShops(){var val=document.getElementById("searchBox").value.toLowerCase(),list=document.getElementsByClassName("shop-item"),matched=0,shown=0;for(var i=0;i<list.length;i++){var item=list[i],mSearch=item.getAttribute("data-search").toLowerCase().indexOf(val)!==-1,mCat=(curCat==="الكل"||item.getAttribute("data-cat")===curCat);if(mSearch&&mCat){matched++;if(shown<visibleShops){item.style.display="flex";shown++}else{item.style.display="none"}}else{item.style.display="none"}}var note=document.getElementById("moreShopsNote");if(matched===0)note.textContent="لا توجد محلات مطابقة للبحث";else note.textContent="تم عرض جميع المحلات ("+matched+" محل)"}
+function openShopPage(num){curShop=num;document.getElementById("homeSec").style.display="none";document.getElementById("shopSec").style.display="block";document.getElementById("adminBox").style.display=isAdmin?"block":"none";var sName=shopNames[num]||("محل رقم "+num);document.getElementById("shopHeading").textContent="منتجات "+sName+" (1 إلى 50)";if(isAdmin){document.getElementById("sNameIn").value=sName;document.getElementById("sPhoneIn").value=shopPhones[num]||defaultPhone;document.getElementById("sCatIn").value=shopCats[num]||"خدمات وأخرى";document.getElementById("sImgIn").value=shopCovers[num]||""}drawItems(num);window.scrollTo(0,0)}
+function backHome(){document.getElementById("shopSec").style.display="none";document.getElementById("homeSec").style.display="block";drawHome()}
+function pickImg(inp,targetId){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){var img=new Image();img.onload=function(){var maxW=800,w=img.width,h=img.height;if(w>maxW){h=Math.round((h*maxW)/w);w=maxW}var cvs=document.createElement("canvas");cvs.width=w;cvs.height=h;var ctx=cvs.getContext("2d");ctx.drawImage(img,0,0,w,h);document.getElementById(targetId).value=cvs.toDataURL("image/jpeg",0.75)};img.onerror=function(){document.getElementById(targetId).value=ev.target.result};img.src=ev.target.result};r.readAsDataURL(f)}
+function saveStoreSafe(key,val){
+  var savedAny=false;
+  try{localStorage.setItem(key,JSON.stringify(val));savedAny=true}catch(e){}
+  if(idb){
+    try{
+      var tx=idb.transaction("store","readwrite");
+      tx.objectStore("store").put(val,key);
+      savedAny=true;
+    }catch(err){}
+  }
+  if(!savedAny){
+    alert("تعذر الحفظ بسبب امتلاء مساحة الجهاز. صدّر نسخة احتياطية أو استخدم روابط صور بدلاً من رفع صور كبيرة جداً.");
+    return false;
+  }
+  return true;
+}
+function saveTopItem(){if(!isAdmin)return;var idx=parseInt(document.getElementById("tNumIn").value,10);if(isNaN(idx)||idx<1||idx>30)return;topCustom[idx]={name:document.getElementById("tNameIn").value.trim(),price:document.getElementById("tPriceIn").value.trim(),img:document.getElementById("tImgIn").value.trim(),vid:document.getElementById("tVidIn").value.trim()};if(saveStoreSafe("q_top_prods",topCustom)){drawHome();alert("تم حفظ بطاقة الشريط رقم "+idx)}}
+function removeTopSlot(idx){if(!isAdmin)return;delete topCustom[idx];saveStoreSafe("q_top_prods",topCustom);drawHome()}
+function drawItems(num){
+var itemsList=document.getElementById("itemsList");itemsList.innerHTML="";
+var sName=shopNames[num]||("محل رقم "+num),phone=shopPhones[num]||defaultPhone,map=customProds[num]||{},vMap=itemVideos[num]||{};
+for(var p=1;p<=50;p++)(function(pNum){var c=map[pNum]||{},title=c.name||("قطعة "+pNum),price=c.price||"حسب الطلب",img=c.img||("images/shop"+num+"/"+pNum+".jpg"),vid=vMap[pNum]||"";var card=document.createElement("div");card.className="card";var mb=document.createElement("div");mb.className="media-box";mb.appendChild(makeMedia(img,vid,title+" - "+price));var bdg=document.createElement("span");bdg.className="badge";bdg.textContent=pNum;mb.appendChild(bdg);if(isAdmin){var delBtn=document.createElement("button");delBtn.type="button";delBtn.className="del-x";delBtn.textContent="X";delBtn.onclick=function(){removeSlot(pNum)};mb.appendChild(delBtn)}card.appendChild(mb);var body=document.createElement("div");body.className="card-body";var t=document.createElement("div");t.className="card-title";t.textContent=title;body.appendChild(t);var pr=document.createElement("div");pr.style.cssText="font-size:9px;color:#2563eb;font-weight:bold";pr.textContent=price;body.appendChild(pr);card.appendChild(body);var act=document.createElement("div");act.className="actions";var wa=document.createElement("a");wa.className="btn-wa";wa.target="_blank";wa.href="https://wa.me/"+phone+"?text="+encodeURIComponent("استفسار عن "+title+" ("+price+") من "+sName);wa.textContent="طلب واتساب";var sh=document.createElement("button");sh.type="button";sh.className="btn-sh";sh.textContent="مشاركة";sh.onclick=function(){doShare(title+" من "+sName)};act.appendChild(wa);act.appendChild(sh);card.appendChild(act);itemsList.appendChild(card)})(p)}
+function removeSlot(pNum){if(!isAdmin)return;if(customProds[curShop])delete customProds[curShop][pNum];if(itemVideos[curShop])delete itemVideos[curShop][pNum];saveStoreSafe("q_prods",customProds);saveStoreSafe("q_item_vids",itemVideos);drawItems(curShop)}
+function saveShopInfo(){if(!isAdmin)return;var nn=document.getElementById("sNameIn").value.trim(),np=document.getElementById("sPhoneIn").value.trim(),ncat=document.getElementById("sCatIn").value,nc=document.getElementById("sImgIn").value.trim();if(nn)shopNames[curShop]=nn;if(np)shopPhones[curShop]=np;shopCats[curShop]=ncat;if(nc)shopCovers[curShop]=nc;else delete shopCovers[curShop];var ok1=saveStoreSafe("q_shop_names",shopNames);var ok2=saveStoreSafe("q_shop_phones",shopPhones);var ok3=saveStoreSafe("q_shop_cats",shopCats);var ok4=saveStoreSafe("q_shop_covers",shopCovers);if(ok1&&ok2&&ok3&&ok4){document.getElementById("shopHeading").textContent="منتجات "+(shopNames[curShop]||("محل رقم "+curShop))+" (1 إلى 50)";alert("تم حفظ بيانات المحل")}}
+function saveVid(){if(!isAdmin)return;var slot=parseInt(document.getElementById("vSlotIn").value,10),v=document.getElementById("vidIn").value.trim();if(isNaN(slot)||slot<1||slot>50||!v)return;if(!itemVideos[curShop])itemVideos[curShop]={};itemVideos[curShop][slot]=v;if(saveStoreSafe("q_item_vids",itemVideos)){drawItems(curShop);alert("تم حفظ الفيديو للقطعة "+slot)}}
+function delVid(){if(!isAdmin)return;var slot=parseInt(document.getElementById("vSlotIn").value,10);if(itemVideos[curShop])delete itemVideos[curShop][slot];saveStoreSafe("q_item_vids",itemVideos);drawItems(curShop)}
+function saveProd(){if(!isAdmin)return;var pNum=parseInt(document.getElementById("pNumIn").value,10);if(isNaN(pNum)||pNum<1||pNum>50)return;if(!customProds[curShop])customProds[curShop]={};customProds[curShop][pNum]={name:document.getElementById("pNameIn").value.trim(),price:document.getElementById("pPriceIn").value.trim(),img:document.getElementById("pImgIn").value.trim()};if(saveStoreSafe("q_prods",customProds)){drawItems(curShop);alert("تم حفظ القطعة رقم "+pNum)}}
+function exportBackup(){var data={shopNames:shopNames,shopPhones:shopPhones,shopCats:shopCats,shopCovers:shopCovers,itemVideos:itemVideos,customProds:customProds,topCustom:topCustom};var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data)],{type:"application/json"}));a.download="qalat_sukkar_backup.json";a.click()}
+function importBackup(inp){var f=inp.files&&inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{var d=JSON.parse(ev.target.result);if(d.shopNames)shopNames=d.shopNames;if(d.shopPhones)shopPhones=d.shopPhones;if(d.shopCats)shopCats=d.shopCats;if(d.shopCovers)shopCovers=d.shopCovers;if(d.itemVideos)itemVideos=d.itemVideos;if(d.customProds)customProds=d.customProds;if(d.topCustom)topCustom=d.topCustom;saveStoreSafe("q_shop_names",shopNames);saveStoreSafe("q_shop_phones",shopPhones);saveStoreSafe("q_shop_cats",shopCats);saveStoreSafe("q_shop_covers",shopCovers);saveStoreSafe("q_item_vids",itemVideos);saveStoreSafe("q_prods",customProds);saveStoreSafe("q_top_prods",topCustom);drawItems(curShop);alert("تم استرجاع النسخة الاحتياطية بنجاح")}catch(err){alert("ملف غير صالح")}};r.readAsText(f)}
+function shareCurrentShop(){var sName=shopNames[curShop]||("محل رقم "+curShop);doShare("جميع منتجات "+sName)}
+function doShare(label){shareRewarded=false;var url=window.location.href.split("?")[0];lastShareText="شاهد "+label+" على منصة قلعة سكر الشاملة:\n"+url;document.getElementById("fbBtn").href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url);document.getElementById("waBtn").href="https://wa.me/?text="+encodeURIComponent(lastShareText);document.getElementById("shareModal").style.display="flex"}
+function claimSharePts(){if(shareRewarded)return;shareRewarded=true;points+=10;document.getElementById("pts").textContent=points;saveStoreSafe("q_pts",points)}
+function copyLink(){claimSharePts();if(navigator.clipboard)navigator.clipboard.writeText(lastShareText);alert("تم نسخ النص والرابط وإضافة +10 نقاط!")}
+function closeModal(){document.getElementById("shareModal").style.display="none"}
+var mObj={name:"منصة قلعة سكر الشاملة",short_name:"قلعة سكر",start_url:window.location.href,display:"standalone",background_color:"#f1f5f9",theme_color:"#1d4ed8",icons:[{src:document.getElementById("app-icon").href,sizes:"512x512",type:"image/svg+xml",purpose:"any maskable"}]};
+var mLink=document.createElement("link");mLink.rel="manifest";mLink.href=URL.createObjectURL(new Blob([JSON.stringify(mObj)],{type:"application/manifest+json"}));document.head.appendChild(mLink);
+if("serviceWorker" in navigator){var swB=new Blob(["self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('fetch',e=>{});"],{type:"application/javascript"});navigator.serviceWorker.register(URL.createObjectURL(swB)).catch(function(){})}
+var defPrompt=null,instBar=document.getElementById("installBar"),instBtn=document.getElementById("installBtn");
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();defPrompt=e;if(!localStorage.getItem("q_hide_inst"))instBar.style.display="flex"});
+instBtn.addEventListener("click",function(){if(defPrompt){defPrompt.prompt();defPrompt.userChoice.then(function(r){if(r.outcome==="accepted")instBar.style.display="none";defPrompt=null})}else{alert("اضغط قائمة المتصفح (النقاط الثلاث أو زر المشاركة) واختر (إضافة إلى الشاشة الرئيسية).")}});
+if(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())&&!(window.matchMedia("(display-mode: standalone)").matches||navigator.standalone)&&!localStorage.getItem("q_hide_inst")){document.getElementById("instHint").textContent="اضغط زر المشاركة بالأسفل ثم اختر (إضافة إلى الصفحة الرئيسية)";instBar.style.display="flex"}
+function hideInstallBar(){instBar.style.display="none";try{localStorage.setItem("q_hide_inst","1")}catch(e){}}
+initBigStorage();
+drawHome();
+</script>
+</body>
+</html>
